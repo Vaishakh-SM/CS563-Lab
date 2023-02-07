@@ -1,4 +1,6 @@
 import json
+import random
+import math
 
 json_data = []
 
@@ -6,13 +8,14 @@ with open('penn-data.json') as json_file:
     json_data = json.load(json_file)
 
 THRESHOLD_FREQ = 4
-RARE_TOKEN = "RARE"
+RARE_TOKEN = "<RARE>"
 START_TOKEN = "<START>"
 END_TOKEN = "<END>"
 START_TAG = "<START>"
 END_TAG = "<END>"
 
-word_count = {}
+# PREPROCESSING
+w_cnt = {}
 for cnt, item in enumerate(json_data):
     json_data[cnt][0] = START_TOKEN + " " + json_data[cnt][0] + " " + END_TOKEN
 
@@ -21,43 +24,29 @@ for cnt, item in enumerate(json_data):
 
 for item in json_data:
     for word in item[0].split(" "):
-        if word in word_count:
-            word_count[word] = word_count[word] + 1
+        if word in w_cnt:
+            w_cnt[word] = w_cnt[word] + 1
         else:
-            word_count[word] = 1
+            w_cnt[word] = 1
 
 for cnt, item in enumerate(json_data):
     new_data = ""
     for word in item[0].split(" "):
-        if word_count[word] <= THRESHOLD_FREQ:
+        if w_cnt[word] <= THRESHOLD_FREQ:
             new_data = new_data + " " + RARE_TOKEN
         else:
             new_data = new_data + " " + word
 
     json_data[cnt][0] = new_data[1:]
 
-word_count.clear()
-
-for item in json_data:
-    for word in item[0].split(" "):
-        if word in word_count:
-            word_count[word] = word_count[word] + 1
-        else:
-            word_count[word] = 1
-
 
 def calc_transition(data):
 
     transition_count = {}
-    word_id = {}
-    word_cnt = 0
 
     for item in data:
         word_list = item[0].split(" ")
         for cnt, word in enumerate(word_list[:-1]):
-            if word not in word_id:
-                word_id[word] = word_cnt
-                word_cnt += 1
 
             if word not in transition_count:
                 transition_count[word] = {}
@@ -69,7 +58,7 @@ def calc_transition(data):
             else:
                 transition_count[word][next_word] = 1
 
-    return transition_count, word_id
+    return transition_count
 
 
 def calc_emission(data):
@@ -105,10 +94,13 @@ def calc_emission(data):
 def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
             tag_from_id):
     word_list = sentence.split(" ")
+    if word_list[0] != START_TOKEN:
+        word_list.insert(0, START_TOKEN)
 
-    word_list.insert(0, START_TOKEN)
-    word_list.append(END_TOKEN)
+    if word_list[-1] != END_TOKEN:
+        word_list.append(END_TOKEN)
     new_list = []
+    # print("SENTENCE IS: ", word_list)
 
     for word in word_list:
         if word not in word_count or word_count[word] <= THRESHOLD_FREQ:
@@ -128,8 +120,19 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
         for j in range(0, len(tag_id)):
 
             for prev_tag in range(0, len(tag_id)):
+
+                if word_list[i - 1] not in transition_count:
+                    print("ERROR!")
+                    print("Dp is:")
+                    print(dp)
+
+                    print("Prev is")
+                    print(prev)
+                    print(word_list)
+                    break
+
                 if word_list[i] not in transition_count[word_list[i - 1]]:
-                    t_count = 0
+                    t_count = 1
                 else:
                     t_count = transition_count[word_list[i - 1]][word_list[i]]
 
@@ -148,11 +151,11 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
 
     max_prob = 0
     max_index = 0
-    print("Dp is:")
-    print(dp)
+    # print("Dp is:")
+    # print(dp)
 
-    print("Prev is")
-    print(prev)
+    # print("Prev is")
+    # print(prev)
     for i in range(0, len(tag_id)):
         if dp[len(word_list) - 1][i] > max_prob:
             max_prob = dp[len(word_list) - 1][i]
@@ -174,16 +177,96 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
     for item in decoded_seq[1:]:
         decoded_tags.append(tag_from_id[item])
 
-    decoded_tags
+    return decoded_tags[1:]
 
-    return decoded_tags
+
+def calc_word_count(data):
+    word_count = {}
+
+    for item in data:
+        for word in item[0].split(" "):
+            if word in word_count:
+                word_count[word] = word_count[word] + 1
+            else:
+                word_count[word] = 1
+
+    return word_count
+
+
+def calculate_difference(true_val, predicted_val):
+    true_pred = 0
+    false_pred = 0
+    # print("LEN TRUE: ", len(true_val))
+    # print("LEN PRED: ", len(predicted_val))
+
+    # print(true_val)
+
+    # print(predicted_val)
+
+    for cnt, value in enumerate(true_val[1:-1]):
+        if predicted_val[cnt] != value:
+            false_pred += 1
+        else:
+            true_pred += 1
+
+    return true_pred, false_pred
 
 
 def trial():
-    trans_count, word_id = calc_transition(json_data)
+    trans_count = calc_transition(json_data)
     emission_count, tag_id, tag_from_id = calc_emission(json_data)
-    sent = "Neither Lorillard nor the researchers who studied the workers were aware of any research on smokers of the Kent cigarettes."
+    sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
+
+    word_count = calc_word_count(json_data)
     res = viterbi(sent, emission_count, trans_count, word_count, tag_id,
                   tag_from_id)
 
     return res
+
+
+def test_sent():
+    sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
+    shuffled_data = random.sample(json_data, len(json_data))
+
+    train_len = math.floor(len(shuffled_data) * 0.8)
+    train = shuffled_data[0:train_len]
+    test = shuffled_data[train_len + 1:]
+
+    word_count = calc_word_count(train)
+    trans_count = calc_transition(train)
+    emission_count, tag_id, tag_from_id = calc_emission(train)
+    predicted_values = viterbi(sent, emission_count, trans_count, word_count,
+                               tag_id, tag_from_id)
+
+    print("PRED: ", predicted_values)
+
+
+def execute():
+
+    shuffled_data = random.sample(json_data, len(json_data))
+
+    train_len = math.floor(len(shuffled_data) * 0.8)
+    print("Train length is ", train_len)
+    train = shuffled_data[0:train_len]
+    test = shuffled_data[train_len + 1:]
+
+    word_count = calc_word_count(train)
+    trans_count = calc_transition(train)
+    emission_count, tag_id, tag_from_id = calc_emission(train)
+    total_true = 0
+    total_false = 0
+    for item in test:
+        sentence = item[0]
+        true_value = item[1]
+
+        predicted_values = viterbi(sentence, emission_count, trans_count,
+                                   word_count, tag_id, tag_from_id)
+
+        true_pred, false_pred = calculate_difference(true_value,
+                                                     predicted_values)
+
+        total_true += true_pred
+        total_false += false_pred
+
+    print("TRUE: ", total_true)
+    print("FALSE: ", total_false)
