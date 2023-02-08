@@ -1,6 +1,7 @@
 import json
 import random
 import math
+from sklearn.metrics import classification_report
 
 json_data = []
 
@@ -91,8 +92,7 @@ def calc_emission(data):
     return emission_count, tag_id, tag_from_id
 
 
-def viterbi(sentence, emission_count, transition_count, tag_count, word_count,
-            tag_id, tag_from_id):
+def viterbi(sentence, emission_count, transition_count, tag_count, word_count, tag_id, tag_from_id):
     word_list = sentence.split(" ")
     if word_list[0] != START_TOKEN:
         word_list.insert(0, START_TOKEN)
@@ -121,17 +121,14 @@ def viterbi(sentence, emission_count, transition_count, tag_count, word_count,
 
             for prev_tag in range(0, len(tag_id)):
 
-                t_count = transition_count.get(tag_from_id[prev_tag],
-                                               {}).get(tag_from_id[j], 0)
+                t_count = transition_count.get(tag_from_id[prev_tag],{}).get(tag_from_id[j], 0)
 
                 if j not in emission_count[word_list[i]]:
                     e_count = 0
                 else:
                     e_count = emission_count[word_list[i]][j]
 
-                prob = dp[i - 1][prev_tag] * (
-                    t_count / tag_count[tag_from_id[prev_tag]]) * (
-                        e_count / tag_count[tag_from_id[j]])
+                prob = dp[i - 1][prev_tag] * (t_count / tag_count[tag_from_id[prev_tag]]) * (e_count / tag_count[tag_from_id[j]])
 
                 if prob > dp[i][j]:
                     dp[i][j] = prob
@@ -139,11 +136,7 @@ def viterbi(sentence, emission_count, transition_count, tag_count, word_count,
 
     max_prob = 0
     max_index = 0
-    # print("Dp is:")
-    # print(dp)
 
-    # print("Prev is")
-    # print(prev)
     for i in range(0, len(tag_id)):
         if dp[len(word_list) - 1][i] > max_prob:
             max_prob = dp[len(word_list) - 1][i]
@@ -195,14 +188,9 @@ def calc_word_count(data):
 
 
 def calculate_difference(true_val, predicted_val):
+    assert len(true_val[1:-1])==len(predicted_val)
     true_pred = 0
     false_pred = 0
-    # print("LEN TRUE: ", len(true_val))
-    # print("LEN PRED: ", len(predicted_val))
-
-    # print(true_val)
-
-    # print(predicted_val)
 
     for cnt, value in enumerate(true_val[1:-1]):
         if predicted_val[cnt] != value:
@@ -213,19 +201,7 @@ def calculate_difference(true_val, predicted_val):
     return true_pred, false_pred
 
 
-# def trial():
-#     trans_count = calc_transition(json_data)
-#     emission_count, tag_id, tag_from_id = calc_emission(json_data)
-#     sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
-
-#     word_count = calc_word_count(json_data)
-#     res = viterbi(sent, emission_count, trans_count, word_count, tag_id,
-#                   tag_from_id)
-
-#     return res
-
-
-def test_sent():
+def sample_testcase():
     sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
     shuffled_data = random.sample(json_data, len(json_data))
 
@@ -237,18 +213,24 @@ def test_sent():
     word_count = calc_word_count(train)
     trans_count = calc_transition(train)
     emission_count, tag_id, tag_from_id = calc_emission(train)
-    predicted_values = viterbi(sent, emission_count, trans_count, tag_count,
-                               word_count, tag_id, tag_from_id)
+    predicted_values = viterbi(sent, emission_count, trans_count, tag_count, word_count, tag_id, tag_from_id)
 
     print("PRED: ", predicted_values)
 
+def print_accuracy(flat_original_tags, flat_predicted_tags):
+    assert len(flat_original_tags)==len(flat_predicted_tags)
 
-def execute():
+    print("Accuracy report:")
+    report = classification_report(flat_original_tags, flat_predicted_tags, zero_division=0)
+    print(report)
+    with open('./outputs/classification_report.txt', 'w') as outfile:
+        print(report, file=outfile)
 
+def main():
     shuffled_data = random.sample(json_data, len(json_data))
 
     train_len = math.floor(len(shuffled_data) * 0.8)
-    print("Train length is ", train_len)
+    print("Training", train_len, "samples...")
     train = shuffled_data[0:train_len]
     test = shuffled_data[train_len + 1:]
 
@@ -256,20 +238,40 @@ def execute():
     tag_count = calc_tag_count(train)
     trans_count = calc_transition(train)
     emission_count, tag_id, tag_from_id = calc_emission(train)
-    total_true = 0
-    total_false = 0
+    total_true = 0; total_false = 0
+    flat_original_tags=[]; flat_predicted_tags = []
+    predictions = []
+
     for item in test:
         sentence = item[0]
         true_value = item[1]
+        predicted_values = viterbi(sentence, emission_count, trans_count, tag_count, word_count, tag_id, tag_from_id)
+        
+        new_pred = {
+            "sentence" : sentence[8:-6], 
+            "ground_truth": true_value[1:-1],
+            "prediction": predicted_values
+        }
+        flat_original_tags.extend(true_value[1:-1])
+        flat_predicted_tags.extend(predicted_values)
 
-        predicted_values = viterbi(sentence, emission_count, trans_count,
-                                   tag_count, word_count, tag_id, tag_from_id)
+        predictions.append(new_pred)
 
-        true_pred, false_pred = calculate_difference(true_value,
-                                                     predicted_values)
+        true_pred, false_pred = calculate_difference(true_value, predicted_values)
 
         total_true += true_pred
         total_false += false_pred
 
+    print_accuracy(flat_original_tags, flat_predicted_tags)
+
+    print("Test results written!")
+    json_object = json.dumps(predictions, indent=4)
+    with open('./outputs/pred.json', 'w') as outfile:
+        outfile.write(json_object)
+
     print("TRUE: ", total_true)
     print("FALSE: ", total_false)
+
+
+if __name__=="__main__":
+    main()
