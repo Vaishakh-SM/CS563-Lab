@@ -45,18 +45,18 @@ def calc_transition(data):
     transition_count = {}
 
     for item in data:
-        word_list = item[0].split(" ")
-        for cnt, word in enumerate(word_list[:-1]):
+        tag_list = item[1]
+        for cnt, tag in enumerate(tag_list[:-1]):
 
-            if word not in transition_count:
-                transition_count[word] = {}
+            if tag not in transition_count:
+                transition_count[tag] = {}
 
-            next_word = word_list[cnt + 1]
+            next_tag = tag_list[cnt + 1]
 
-            if next_word in transition_count[word]:
-                transition_count[word][next_word] += 1
+            if next_tag in transition_count[tag]:
+                transition_count[tag][next_tag] += 1
             else:
-                transition_count[word][next_word] = 1
+                transition_count[tag][next_tag] = 1
 
     return transition_count
 
@@ -91,8 +91,8 @@ def calc_emission(data):
     return emission_count, tag_id, tag_from_id
 
 
-def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
-            tag_from_id):
+def viterbi(sentence, emission_count, transition_count, tag_count, word_count,
+            tag_id, tag_from_id):
     word_list = sentence.split(" ")
     if word_list[0] != START_TOKEN:
         word_list.insert(0, START_TOKEN)
@@ -121,20 +121,8 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
 
             for prev_tag in range(0, len(tag_id)):
 
-                if word_list[i - 1] not in transition_count:
-                    print("ERROR!")
-                    print("Dp is:")
-                    print(dp)
-
-                    print("Prev is")
-                    print(prev)
-                    print(word_list)
-                    break
-
-                if word_list[i] not in transition_count[word_list[i - 1]]:
-                    t_count = 1
-                else:
-                    t_count = transition_count[word_list[i - 1]][word_list[i]]
+                t_count = transition_count.get(tag_from_id[prev_tag],
+                                               {}).get(tag_from_id[j], 0)
 
                 if j not in emission_count[word_list[i]]:
                     e_count = 0
@@ -142,8 +130,8 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
                     e_count = emission_count[word_list[i]][j]
 
                 prob = dp[i - 1][prev_tag] * (
-                    t_count / word_count[word_list[i - 1]]) * (
-                        e_count / word_count[word_list[i]])
+                    t_count / tag_count[tag_from_id[prev_tag]]) * (
+                        e_count / tag_count[tag_from_id[j]])
 
                 if prob > dp[i][j]:
                     dp[i][j] = prob
@@ -180,6 +168,19 @@ def viterbi(sentence, emission_count, transition_count, word_count, tag_id,
     return decoded_tags[1:]
 
 
+def calc_tag_count(data):
+    tag_count = {}
+
+    for item in data:
+        for tag in item[1]:
+            if tag in tag_count:
+                tag_count[tag] = tag_count[tag] + 1
+            else:
+                tag_count[tag] = 1
+
+    return tag_count
+
+
 def calc_word_count(data):
     word_count = {}
 
@@ -212,16 +213,16 @@ def calculate_difference(true_val, predicted_val):
     return true_pred, false_pred
 
 
-def trial():
-    trans_count = calc_transition(json_data)
-    emission_count, tag_id, tag_from_id = calc_emission(json_data)
-    sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
+# def trial():
+#     trans_count = calc_transition(json_data)
+#     emission_count, tag_id, tag_from_id = calc_emission(json_data)
+#     sent = "The Soviet Union usually begins buying U.S. crops earlier in the fall."
 
-    word_count = calc_word_count(json_data)
-    res = viterbi(sent, emission_count, trans_count, word_count, tag_id,
-                  tag_from_id)
+#     word_count = calc_word_count(json_data)
+#     res = viterbi(sent, emission_count, trans_count, word_count, tag_id,
+#                   tag_from_id)
 
-    return res
+#     return res
 
 
 def test_sent():
@@ -232,11 +233,12 @@ def test_sent():
     train = shuffled_data[0:train_len]
     test = shuffled_data[train_len + 1:]
 
+    tag_count = calc_tag_count(train)
     word_count = calc_word_count(train)
     trans_count = calc_transition(train)
     emission_count, tag_id, tag_from_id = calc_emission(train)
-    predicted_values = viterbi(sent, emission_count, trans_count, word_count,
-                               tag_id, tag_from_id)
+    predicted_values = viterbi(sent, emission_count, trans_count, tag_count,
+                               word_count, tag_id, tag_from_id)
 
     print("PRED: ", predicted_values)
 
@@ -251,6 +253,7 @@ def execute():
     test = shuffled_data[train_len + 1:]
 
     word_count = calc_word_count(train)
+    tag_count = calc_tag_count(train)
     trans_count = calc_transition(train)
     emission_count, tag_id, tag_from_id = calc_emission(train)
     total_true = 0
@@ -260,7 +263,7 @@ def execute():
         true_value = item[1]
 
         predicted_values = viterbi(sentence, emission_count, trans_count,
-                                   word_count, tag_id, tag_from_id)
+                                   tag_count, word_count, tag_id, tag_from_id)
 
         true_pred, false_pred = calculate_difference(true_value,
                                                      predicted_values)
