@@ -41,6 +41,23 @@ for cnt, item in enumerate(json_data):
     json_data[cnt][0] = new_data[1:]
 
 
+def transform_to_4_tag(shuffled_data):
+    noun_tags = ['NN', 'NNS', 'NNP', 'NNPS', 'PRP', 'PRP$', 'WP', 'WP$']
+    verb_tags = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
+    adj_adv_tags = ['JJ', 'JJR', 'JJS', 'RB', 'RBR', 'RBS', 'WRB']
+    for i,_ in enumerate(shuffled_data):
+        for j,_ in enumerate(shuffled_data[i][1]):
+            tag=shuffled_data[i][1][j]
+            if tag in noun_tags:
+                shuffled_data[i][1][j]='N'
+            elif tag in verb_tags:
+                shuffled_data[i][1][j]='V'
+            elif tag in adj_adv_tags:
+                shuffled_data[i][1][j]='A'
+            elif tag != START_TAG and tag != END_TAG:
+                shuffled_data[i][1][j]='O'
+    return
+
 def calc_transition(data):
 
     transition_count = {}
@@ -217,23 +234,29 @@ def sample_testcase():
 
     print("PRED: ", predicted_values)
 
-def print_accuracy(flat_original_tags, flat_predicted_tags):
+def print_accuracy(flat_original_tags, flat_predicted_tags,prefix):
     assert len(flat_original_tags)==len(flat_predicted_tags)
 
     print("Accuracy report:")
     report = classification_report(flat_original_tags, flat_predicted_tags, zero_division=0)
     print(report)
-    with open('./outputs/classification_report.txt', 'w') as outfile:
+    with open(f'./{prefix}outputs/classification_report.txt', 'w') as outfile:
         print(report, file=outfile)
 
-def main():
+def main(choice):
     shuffled_data = random.sample(json_data, len(json_data))
 
+    prefix=""
+    if choice=='2':
+        transform_to_4_tag(shuffled_data)
+        prefix="4_tag_setting_"
+    else:   
+        prefix="36_tag_setting_"
     train_len = math.floor(len(shuffled_data) * 0.8)
-    print("Training", train_len, "samples...")
+    print(f"Training {prefix[:-1]}", train_len, "samples...")
     train = shuffled_data[0:train_len]
     test = shuffled_data[train_len + 1:]
-
+    
     word_count = calc_word_count(train)
     tag_count = calc_tag_count(train)
     trans_count = calc_transition(train)
@@ -262,11 +285,11 @@ def main():
         total_true += true_pred
         total_false += false_pred
 
-    print_accuracy(flat_original_tags, flat_predicted_tags)
+    print_accuracy(flat_original_tags, flat_predicted_tags,prefix)
 
     print("Test results written!")
     json_object = json.dumps(predictions, indent=4)
-    with open('./outputs/pred.json', 'w') as outfile:
+    with open(f'./{prefix}outputs/pred.json', 'w') as outfile:
         outfile.write(json_object)
 
     print("TRUE: ", total_true)
@@ -274,4 +297,5 @@ def main():
 
 
 if __name__=="__main__":
-    main()
+    main(1) #36_tag_setting
+    main(2) #4_tag_setting
