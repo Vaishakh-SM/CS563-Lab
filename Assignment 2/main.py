@@ -5,18 +5,23 @@ import nltk
 nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 
+# NER Tags to match to words in sentence
 states = ["B","I","O"]
+# Lemmatizer changes words in different tenses to their root word (i.e., [ran, run, running] all become ran)
 lemmatizer = WordNetLemmatizer()
-# to get emission, transition, and initial probability matrices
+
+# Calculates HMM Model parameters (pi, A(transition), B(emission))
 def get_parameters(sentences) :
     transition, pi, emission, totalwords = {}, {}, {}, {"B": 0, "I": 0, "O": 0, "all": 0,"trans": {"I": 0, "B": 0,"O": 0}}
+
+    # Initialize dictionaries with keys
     for i in states :
         pi.update({i:0})
         emission.update({i:{}})
         for j in states :
             transition.update({i + j : 0})
 
-    # last character of word is appended tag 
+    # Note that last character of each word is appended tag (B/I/O)
     for line in sentences:
         if len(line) == 0:
             continue
@@ -42,6 +47,7 @@ def get_parameters(sentences) :
             else:
                 transition[line[i - 1][-1] + line[i][-1]] += 1
 
+    # Divide counts by total and calculate probabilities 
     for trans, cnt in transition.items():
         cnt /= totalwords["trans"][trans[0]]
         transition.update({trans: cnt})
@@ -58,7 +64,7 @@ def get_parameters(sentences) :
 
     return transition, pi, emission
 
-# Parses given dataset to required data formats 
+# Parses dataset of sentences and attaches tag of each word to end
 def parser(filename) :
     sentences = [[]]
     with open(filename,'r') as infile :
@@ -70,7 +76,7 @@ def parser(filename) :
     return sentences
 
 
-# Use viterbi algorithm to calculate best hidden states 
+# Use viterbi in bigram HMM to calculate best hidden states (tags that match words)
 def bigram_viterbi(transition, pi, emission, testseq) :
     if len(testseq) == 0:
         return []
@@ -118,7 +124,7 @@ def bigram_viterbi(transition, pi, emission, testseq) :
     pred.reverse()
     return pred
 
-# transmission prob is basically pi in unigram
+# Use viterbi in unigram model (transition probability is the same as initial probability=pi)
 def unigram_viterbi(pi, emission, testseq):
     if len(testseq) == 0:
         return []
@@ -144,6 +150,7 @@ def unigram_viterbi(pi, emission, testseq):
                 emissionvalue = eps
                 if emission[state].get(word) != None:
                     emissionvalue = emission[state][word]
+                # only difference between bigram and unigram
                 p = emissionvalue * mu[i - 1][prev_state]['p'] * pi[state]
                 if p >= max_prob :
                     max_prob = p
@@ -187,7 +194,7 @@ def print_metrics(test_acc, precision, recall, f1, classes):
                    tablefmt='orgtbl'))
     print("\n")
 
-
+# K Fold Cross Validation
 def kfold_crossvalidation(sentences, model, k=5):
     avg_accuracy =0
     for iteration in range(1, k+1):
@@ -244,7 +251,7 @@ if __name__ == "__main__":
     print("Train using bigram HMM model:")
     kfold_crossvalidation(sentences, "bigram")
     
-    # # running for the test-set
+    # Running model for a random test sentence
     with open('test_output.txt', 'w') as ofile:
         transition, pi, emission = get_parameters(sentences)
 
