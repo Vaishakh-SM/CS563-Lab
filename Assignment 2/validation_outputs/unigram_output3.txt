@@ -34,14 +34,14 @@ baby	O
 tonight	O
 !	O
 
-playboy	B
+playboy	O
 -	O
 10	O
 october	O
 2010	O
-slovenia	B
+slovenia	O
 :	O
-playboy	B
+playboy	O
 -	O
 10	O
 october	O
@@ -76,7 +76,7 @@ are	O
 free	O
 .	O
 
-radio	B
+radio	O
 ga	O
 ga	O
 :	O
@@ -119,7 +119,7 @@ for	O
 anna	O
 wintor	O
 in	O
-ny	B
+ny	O
 .	O
 
 having	O
@@ -248,7 +248,7 @@ on	O
 a	O
 look	O
 at	O
-nyc	B
+nyc	O
 's	O
 electric	O
 lady	O
@@ -352,7 +352,7 @@ time	O
 out	O
 there	O
 id	O
-different	I
+different	O
 than	O
 close	O
 up	O
@@ -465,7 +465,7 @@ meeting	O
 with	O
 trisha	O
 in	O
-paris	B
+paris	O
 for	O
 this	O
 week	O
@@ -603,7 +603,7 @@ the	O
 show	O
 tomorrow	O
 in	O
-hawaii	B
+hawaii	O
 ?	O
 
 @sweetbee_90	O
@@ -755,7 +755,7 @@ so	O
 benevolent	O
 ,	O
 oh	O
-kind	I
+kind	O
 master	O
 .	O
 
@@ -840,7 +840,7 @@ day	O
 havent	O
 been	O
 on	O
-facebook	B
+facebook	O
 for	O
 a	O
 day	O
@@ -973,7 +973,7 @@ when	O
 people	O
 say	O
 when	O
-justin	B
+justin	O
 gets	O
 a	O
 gf	O
@@ -989,7 +989,7 @@ pretty	O
 sure	O
 almost	O
 all	O
-bieber	I
+bieber	O
 fans	O
 have	O
 it	O
@@ -1065,7 +1065,7 @@ taking	O
 long	O
 walks	O
 in	O
-gucci	B
+gucci	O
 shoes	O
 ...	O
 
@@ -1080,7 +1080,7 @@ i	O
 tumbled	O
 from	O
 my	O
-mother	B
+mother	O
 's	O
 womb	O
 with	O
@@ -1382,8 +1382,8 @@ for	O
 it	O
 !	O
 
-soulja	B
-boy	I
+soulja	O
+boy	O
 |	O
 thedeandreway	O
 .	O
@@ -1587,7 +1587,7 @@ it	O
 down	O
 .	O
 
-costa	B
+costa	O
 rican	O
 group	O
 cocofunka	O
@@ -1611,7 +1611,7 @@ it	O
 up	O
 at	O
 visions	O
-lounge	I
+lounge	O
 !!!!!	O
 18+	O
 no	O
@@ -1625,7 +1625,7 @@ b4	O
 11pm	O
 !	O
 visions	O
-lounge	I
+lounge	O
 (	O
 247	O
 1st	O
@@ -1684,7 +1684,7 @@ rt	O
 hey	O
 y'all	O
 "	O
-east	I
+east	O
 nu	O
 ,"	O
 round	O
@@ -1702,7 +1702,7 @@ should've	O
 stayed	O
 lol	O
 
-ball	B
+ball	O
 gowns	O
 :	O
 becoming	O
@@ -1710,16 +1710,16 @@ the	O
 belle	O
 of	O
 the	O
-ball	B
+ball	O
 .	O
 it	O
 's	O
-easy	B
+easy	O
 to	O
 shine	O
 like	O
 a	O
-star	B
+star	O
 when	O
 you	O
 know	O
@@ -1739,7 +1739,7 @@ lawn	O
 !	O
 
 watching	O
-camp	I
+camp	O
 rock	O
 2	O
 again	O
@@ -1817,7 +1817,7 @@ you	O
 rt	O
 @josielovesmcr	O
 :	O
-danger	B
+danger	O
 days	O
 :	O
 true	O
@@ -1828,7 +1828,7 @@ fabulous	O
 killjoys	O
 #mychemicalromance	O
 
-cafe	I
+cafe	O
 nine	O
 tonight	O
 at	O
@@ -1886,7 +1886,7 @@ or	O
 crying	O
 .	O
 24/7	O
-god	B
+god	O
 is	O
 great	O
 !!!	O
@@ -2154,7 +2154,7 @@ on	O
 you	O
 ."	O
 -the	O
-boy	I
+boy	O
 you	O
 use	O
 to	O
@@ -2173,17 +2173,17 @@ you're	O
 following	O
 us	O
 on	O
-twitter	B
+twitter	O
 and	O
 get	O
 a	O
 free	O
 fried	O
-mac	I
+mac	O
 n	O
 '	O
 cheese	O
-ball	B
+ball	O
 with	O
 any	O
 order	O
@@ -2199,7 +2199,7 @@ dormidas	O
 rt	O
 @vivi_venom	O
 "	O
-danger	B
+danger	O
 days	O
 :	O
 the	O
@@ -2207,7 +2207,7 @@ true	O
 lives	O
 of	O
 the	O
-fabulous	I
+fabulous	O
 killjoys	O
 ."	O
 22nd	O
@@ -2252,7 +2252,7 @@ bloom	O
 ...	O
 her	O
 two	O
-beautiful	I
+beautiful	O
 daughters	O
 surprised	O
 her	O
@@ -2271,7 +2271,7 @@ the	O
 luckiest	O
 guy	O
 in	O
-america	B
+america	O
 ...	O
 soooo	O
 jealous	O
@@ -2337,13 +2337,13 @@ done	O
 have	O
 you	O
 heard	O
-dj	B
+dj	O
 strategy	O
 is	O
 now	O
 at	O
 visions	O
-lounge	I
+lounge	O
 in	O
 hickory	O
 ,	O
@@ -2557,13 +2557,13 @@ for	O
 desert	O
 rd	O
 ,	O
-lewis	I
+lewis	O
 ,	O
 rimutakas	O
 
-justin	B
+justin	O
 timberlake	O
-ft	B
+ft	O
 .	O
 beyonce	O
 -	O
@@ -2621,7 +2621,7 @@ f	O
 at	O
 buffalo	O
 municipal	O
-airport	I
+airport	O
 ,	O
 mn	O
 winds	O
@@ -2650,7 +2650,7 @@ filmed	O
 and	O
 interviewed	O
 about	O
-sex	B
+sex	O
 in	O
 cologne	O
 :d	O
@@ -2828,7 +2828,7 @@ sat	O
 writing	O
 it	O
 on	O
-facebook	B
+facebook	O
 .....	O
 
 @valovanity	O
@@ -3020,7 +3020,7 @@ flashback	O
 friday	O
 -	O
 "	O
-dancing	I
+dancing	O
 queen	O
 "	O
 http://bit.ly/d49vxu'	O
@@ -3132,7 +3132,7 @@ try	O
 3	O
 of	O
 chef	O
-tim	B
+tim	O
 's	O
 boozy	O
 ice	O
@@ -3214,7 +3214,7 @@ sniddy	O
 @ohy22sd	O
 hopefully	O
 the	O
-force	I
+force	O
 will	O
 be	O
 very	O

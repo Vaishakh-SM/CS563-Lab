@@ -126,7 +126,7 @@ oh-oh	O
 it	O
 seems	O
 lindsay	O
-lohan	B
+lohan	O
 maybe	O
 be	O
 heading	O
@@ -151,14 +151,14 @@ days	O
 in	O
 prison	O
 
-playboy	B
+playboy	O
 -	O
 10	O
 october	O
 2010	O
-slovenia	B
+slovenia	O
 :	O
-playboy	B
+playboy	O
 -	O
 10	O
 october	O
@@ -521,7 +521,7 @@ rt	O
 wapo	O
 :	O
 renewing	O
-bush	I
+bush	O
 tax	O
 cuts	O
 would	O
@@ -629,7 +629,7 @@ of	O
 genius	O
 &quot;	O
 by	O
-john	I
+john	O
 wertheim	O
 ,	O
 play	O
@@ -693,7 +693,7 @@ if	O
 he	O
 's	O
 playing	O
-air	B
+air	O
 hockey	O
 ?	O
 #profiling	O
@@ -931,7 +931,7 @@ update	O
 tmz	O
 reporting	O
 lindsay	O
-lohan	B
+lohan	O
 just	O
 failed	O
 her	O
@@ -956,7 +956,7 @@ excited	O
 to	O
 get	O
 some	O
-dancing	I
+dancing	O
 done	O
 tonight	O
 with	O
@@ -995,7 +995,7 @@ shaken	O
 hands	O
 w/santana	O
 and/fatt	O
-lady	I
+lady	O
 like	O
 no	O
 otherquote	O
@@ -1088,7 +1088,7 @@ here	O
 are	O
 this	O
 weeks	O
-club	I
+club	O
 penguin	O
 fun	O
 art	O
@@ -1197,13 +1197,13 @@ nick	O
 jonas	O
 .	O
 
-dj	B
+dj	O
 set	O
 at	O
 the	O
 standard	O
 in	O
-la	B
+la	O
 tonight	O
 !	O
 http://fb.me/i91iuaeq	O
@@ -1329,7 +1329,7 @@ guy	O
 .	O
 
 lindsay	O
-lohan	B
+lohan	O
 allegedly	O
 failed	O
 her	O
@@ -1359,15 +1359,15 @@ didn't	O
 work	O
 !	O
 
-soulja	B
-boy	I
+soulja	O
+boy	O
 |	O
 thedeandreway	O
 .	O
 com	O
 -	O
 the	O
-deandre	I
+deandre	O
 way	O
 in	O
 stores	O
@@ -1429,7 +1429,7 @@ yo	I
 
 not	O
 much	O
-twitter	B
+twitter	O
 action	O
 here	O
 tonight	O
@@ -1646,7 +1646,7 @@ also	O
 http://bit.ly/94sbnr	O
 
 super	O
-nintendo	B
+nintendo	O
 sega	O
 genesis	O
 ,	O
@@ -1800,8 +1800,8 @@ i	O
 just	O
 took	O
 "	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 takes	O
 2	O
 months	O
@@ -1832,7 +1832,7 @@ rt	O
 :	O
 sony/bud	O
 light	O
-3d	I
+3d	O
 tailgate	O
 parties	O
 on	O
@@ -1949,7 +1949,7 @@ tonight	O
 us	O
 -	O
 lindsay	O
-lohan	B
+lohan	O
 :	O
 failed	O
 drug	O
@@ -2027,7 +2027,7 @@ weeks	O
 tell	O
 '	O
 em	O
-steve	B
+steve	O
 dave	O
 podcast	O
 
@@ -2143,7 +2143,7 @@ pet	O
 a	O
 kitten	O
 on	O
-jfk	B
+jfk	O
 ,	O
 the	O
 owners	O
@@ -2188,7 +2188,7 @@ son	O
 !!!	O
 
 @hdscc	O
-yo	I
+yo	O
 man	O
 ,	O
 just	O
@@ -2504,7 +2504,7 @@ shit	O
 
 @joereist	O
 hey	O
-joe	B
+joe	O
 .	O
 i'm	O
 down	O
@@ -2545,8 +2545,8 @@ saw	O
 a	O
 picture	O
 of	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 she	O
 said	O
 that	O
@@ -2567,15 +2567,15 @@ haha	O
 .	O
 :)	O
 
-soulja	B
-boy	I
+soulja	O
+boy	O
 |	O
 thedeandreway	O
 .	O
 com	O
 -	O
 the	O
-deandre	I
+deandre	O
 way	O
 in	O
 stores	O
@@ -2927,7 +2927,7 @@ game	O
 be	O
 back	O
 in	O
-la	B
+la	O
 tomorrow	O
 night	O
 !	O
@@ -2943,8 +2943,8 @@ getting	O
 trampled	O
 at	O
 a	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 concert	O
 ,	O
 yoiu	O
@@ -3077,7 +3077,7 @@ waffles	O
 @	O
 new	O
 teaze	O
-cafe	B
+cafe	O
 by	O
 the	O
 library	O
@@ -3156,7 +3156,7 @@ he	O
 was	O
 just	O
 on	O
-facebook	B
+facebook	O
 1	O
 min	O
 ago	O
@@ -3208,7 +3208,7 @@ close	O
 
 that	O
 's	O
-college	B
+college	O
 tuition	O
 .	O
 that	O
@@ -3307,7 +3307,7 @@ soap	O
 went	O
 off	O
 the	O
-air	B
+air	O
 today	O
 after	O
 54	O
@@ -3342,7 +3342,7 @@ from	O
 icarly	O
 was	O
 crazy	O
-steve	B
+steve	O
 ,	O
 carly	O
 was	O
@@ -3370,7 +3370,7 @@ me	O
 yeaaaahhhh	O
 !!!	O
 aguant	O
-la	B
+la	O
 docensia	O
 !!!	O
 
@@ -3467,7 +3467,7 @@ tonightt	O
 
 our	O
 favorite	O
-youtube	B
+youtube	O
 videos	O
 this	O
 week	O
@@ -3551,7 +3551,7 @@ today	O
 post	O
 is	O
 about	O
-3d	I
+3d	O
 graffitti	O
 ...	O
 http://francescoandreone.blogspot.com/2010/09/banksy-makes-social-commentary-art.html	O
@@ -3582,7 +3582,7 @@ rt	O
 @tmz	O
 :	O
 lindsay	O
-lohan	B
+lohan	O
 tested	O
 positive	O
 for	O

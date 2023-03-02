@@ -35,7 +35,7 @@ to	O
 himself	O
 &lt;	O
 &gt;	O
-true	I
+true	O
 ....	O
 dat	O
 
@@ -55,7 +55,7 @@ all	O
 are	O
 welcome	O
 ,	O
-joe	B
+joe	O
 included	O
 
 @nolicious	O
@@ -175,7 +175,7 @@ an	O
 older	O
 version	O
 of	O
-justin	B
+justin	O
 :'	O
 )	O
 
@@ -185,7 +185,7 @@ yesshh	O
 !!	O
 finally	O
 
-band	I
+band	O
 hall	O
 .	O
 game	O
@@ -275,8 +275,8 @@ took	O
 "	O
 you	O
 and	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 love	O
 story	O
 (	O
@@ -404,7 +404,7 @@ hookah	O
 at	O
 the	O
 mix(cma	O
-center	I
+center	O
 )	O
 in	O
 corbin	O
@@ -414,7 +414,7 @@ going	O
 to	O
 this	O
 fish	O
-fry	I
+fry	O
 after	O
 work	O
 ,	O
@@ -490,7 +490,7 @@ distance	O
 via	O
 fb	O
 and	O
-twitter	B
+twitter	O
 .	O
 mwahaha	O
 !	O
@@ -512,7 +512,7 @@ i	O
 'm	O
 excited	O
 for	O
-xmas	B
+xmas	O
 ,	O
 haha	O
 .	O
@@ -770,7 +770,7 @@ tonight	O
 sex	O
 in	O
 the	O
-city	I
+city	O
 "	O
 pt	O
 .	O
@@ -838,7 +838,7 @@ check	O
 out	O
 the	O
 cop	O
-tailgate	I
+tailgate	O
 ...	O
 65	O
 years	O
@@ -856,7 +856,7 @@ oct	O
 1	O
 p	O
 .	O
-m	B
+m	O
 .	O
 
 @leesalulu	O
@@ -901,7 +901,7 @@ tonight	O
 
 our	O
 favorite	O
-youtube	B
+youtube	O
 videos	O
 this	O
 week	O
@@ -932,7 +932,7 @@ rt	O
 t.v	O
 :	O
 text	O
-justin	B
+justin	O
 to	O
 28	O
 28	O
@@ -940,7 +940,7 @@ to	O
 to	O
 get	O
 all	O
-justin	B
+justin	O
 features	O
 !	O
 me	O
@@ -1149,7 +1149,7 @@ he	O
 's	O
 just	O
 a	O
-boy	I
+boy	O
 &quot;	O
 music	O
 video	O
@@ -1161,7 +1161,7 @@ to	O
 @mckenziecomer	O
 you	O
 tube	O
-channel	I
+channel	O
 today	O
 5	O
 pm	O
@@ -1319,7 +1319,7 @@ was	O
 featured	O
 on	O
 oh	O
-canada	B
+canada	O
 team	O
 's	O
 blog	O
@@ -1485,7 +1485,7 @@ that	O
 's	O
 all	O
 
-wow	B
+wow	O
 ,	O
 i'd	O
 forgotten	O
@@ -1505,7 +1505,7 @@ supeeer	O
 dark	O
 today	O
 ..	O
-john	I
+john	O
 says	O
 its	O
 cuz	O
@@ -1526,7 +1526,7 @@ it	O
 drops	O
 
 jets	O
-coach	B
+coach	O
 rex	O
 ryan	O
 pleased	O
@@ -1557,7 +1557,7 @@ week	O
 i'm	O
 excited	O
 for	O
-xmas	B
+xmas	O
 ,	O
 haha	O
 .	O
@@ -1629,7 +1629,7 @@ and	O
 most	O
 importantly	O
 ,	O
-match	I
+match	O
 you	O
 with	O
 the	O
@@ -1647,7 +1647,7 @@ have	O
 been	O
 wrong	O
 about	O
-murkowski	B
+murkowski	O
 ,	O
 look	O
 like	O
@@ -1846,7 +1846,7 @@ time	O
 to	O
 myself	O
 and	O
-god	B
+god	O
 .	O
 brings	O
 peace	O
@@ -1870,7 +1870,7 @@ to	O
 put	O
 them	O
 on	O
-facebook	B
+facebook	O
 now	O
 !!	O
 
@@ -1915,7 +1915,7 @@ mai	O
 c	O
 long	O
 kan	O
-m	B
+m	O
 pr	O
 just	O
 ki	O
@@ -2166,7 +2166,7 @@ fans	O
 in	O
 the	O
 middle	O
-east	B
+east	O
 :)	O
 hope	O
 to	O
@@ -2217,7 +2217,7 @@ me	O
 a	O
 request	O
 on	O
-facebook	B
+facebook	O
 ...	O
 we	O
 hadnt	O
@@ -2328,7 +2328,7 @@ dinner	O
 but	O
 time	O
 with	O
-family	I
+family	O
 from	O
 delaware	O
 ,	O
@@ -2386,7 +2386,7 @@ spider	O
 on	O
 her	O
 upper	O
-body	B
+body	O
 .	O
 i	O
 'm	O
@@ -2395,7 +2395,7 @@ confused	O
 
 man	O
 my	O
-twin	B
+twin	O
 wanna	O
 act	O
 fake	O
@@ -2539,7 +2539,7 @@ oct	O
 @uniquela	O
 will	O
 be	O
-opening	I
+opening	O
 a	O
 store	O
 at	O
@@ -2690,7 +2690,7 @@ and	O
 juniper	O
 routers	O
 for	O
-america	B
+america	O
 's	O
 largest	O
 wireless	O
@@ -2882,7 +2882,7 @@ sunthn	O
 yeah	O
 tomorrow	O
 's	O
-grand	B
+grand	O
 (	O
 :	O
 =	O
@@ -3042,7 +3042,7 @@ pal	O
 !!	O
 how	O
 's	O
-hawaii	B
+hawaii	O
 ??	O
 when	O
 are	O
@@ -3149,7 +3149,7 @@ be	O
 happier	O
 in	O
 another	O
-league	B
+league	O
 and	O
 he	O
 said	O
@@ -3426,7 +3426,7 @@ like	O
 "	O
 us	O
 on	O
-facebook	B
+facebook	O
 ,	O
 get	O
 entered	O
@@ -3437,7 +3437,7 @@ using	O
 usb	O
 3.0	O
 .	O
-easy	B
+easy	O
 .	O
 http://ow.ly/2fxm2	O
 #tech'	O
@@ -3447,7 +3447,7 @@ all	O
 my	O
 girls	O
 in	O
-london	B
+london	O
 or	O
 travelling	O
 up	O
@@ -3475,7 +3475,7 @@ night	O
 casitas	O
 presents	O
 luna	O
-lounge	I
+lounge	O
 ,	O
 the	O
 perfect	O
@@ -3661,7 +3661,7 @@ dinner	O
 the	O
 update	O
 for	O
-green	B
+green	O
 may	O
 or	O
 may	O

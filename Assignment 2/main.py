@@ -151,7 +151,7 @@ def unigram_viterbi(pi, emission, testseq):
                 if emission[state].get(word) != None:
                     emissionvalue = emission[state][word]
                 # only difference between bigram and unigram
-                p = emissionvalue * mu[i - 1][prev_state]['p'] * pi[state]
+                p = emissionvalue * pi[state]
                 if p >= max_prob :
                     max_prob = p
                     prev = prev_state

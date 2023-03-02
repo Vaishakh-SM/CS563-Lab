@@ -28,8 +28,8 @@ getting	O
 trampled	O
 at	O
 a	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 concert	O
 ,	O
 yoiu	O
@@ -56,7 +56,7 @@ rumors	O
 labels	O
 happy	O
 about	O
-itunes	B
+itunes	O
 alternative	O
 ?	O
 -	O
@@ -76,7 +76,7 @@ special	O
 olympics	O
 :	O
 by	O
-tim	B
+tim	O
 yip	O
 ,	O
 edmonton	O
@@ -101,7 +101,7 @@ was	O
 a	O
 kid	O
 his	O
-mother	B
+mother	O
 probably	O
 went	O
 did	O
@@ -369,7 +369,7 @@ seee	O
 you	O
 tomorrow	O
 :)	O
-michael	B
+michael	O
 i	O
 love	O
 you	O
@@ -414,7 +414,7 @@ lool	O
 
 @benarch	O
 100-	O
-tim	B
+tim	O
 bulmer	O
 had	O
 a	O
@@ -490,7 +490,7 @@ twisted	O
 two	O
 nighter	O
 in	O
-london	B
+london	O
 november	O
 18	O
 ...	O
@@ -503,7 +503,7 @@ shpongle	O
 (	O
 simon	O
 posford	O
-dj	B
+dj	O
 set	O
 )	O
 and	O
@@ -552,7 +552,7 @@ the	O
 show	O
 tomorrow	O
 in	O
-hawaii	B
+hawaii	O
 ?	O
 
 power	O
@@ -571,7 +571,7 @@ week	O
 i'm	O
 excited	O
 for	O
-xmas	B
+xmas	O
 ,	O
 haha	O
 .	O
@@ -590,7 +590,7 @@ i	O
 miss	O
 in	O
 doc	O
-lewis	B
+lewis	O
 '	O
 class	O
 today	O
@@ -732,7 +732,7 @@ waking	O
 up	O
 in	O
 the	O
-middle	B
+middle	O
 of	O
 the	O
 night	O
@@ -766,7 +766,7 @@ wanna	O
 hang	O
 :)	O
 
-lohan	I
+lohan	O
 faces	O
 more	O
 jail	O
@@ -881,13 +881,13 @@ islip	O
 long	O
 island	O
 mac	O
-arthur	B
-airport	I
+arthur	O
+airport	O
 ,	O
 ny	O
 winds	O
 are	O
-north	B
+north	O
 at	O
 16.1	O
 mph	O
@@ -919,7 +919,7 @@ who	O
 going	O
 to	O
 be	O
-club	B
+club	O
 champ	O
 this	O
 year	O
@@ -1135,11 +1135,11 @@ will	O
 be	O
 at	O
 burning	O
-bush	B
+bush	O
 grille	O
 ,	O
 13206	O
-w	I
+w	O
 highway	O
 42	O
 ,...	O
@@ -1218,7 +1218,7 @@ copy	O
 )	O
 starring	O
 :	O
-robert	B
+robert	O
 downey	O
 jr	O
 .,	O
@@ -1232,7 +1232,7 @@ http://bit.ly/a6icpn	O
 lol	O
 ,	O
 was	O
-george	B
+george	O
 with	O
 carmen	O
 today	O
@@ -1341,7 +1341,7 @@ with	O
 hayfever/headcold/sinusinfection	O
 but	O
 the	O
-sunshine	I
+sunshine	O
 is	O
 lovely	O
 .	O
@@ -1652,8 +1652,8 @@ gotta	O
 dress	O
 up	O
 for	O
-london	B
-fashion	I
+london	O
+fashion	O
 week	O
 and	O
 party	O
@@ -1812,7 +1812,7 @@ ushuahsahs	O
 i	O
 favorited	O
 a	O
-youtube	B
+youtube	O
 video	O
 --	O
 yoav	O
@@ -2153,17 +2153,17 @@ in	O
 tally	O
 )	O
 tonight	O
-twitter	B
+twitter	O
 !!	O
 
 don	O
 mattingly	O
 will	O
 replace	O
-joe	B
+joe	O
 torre	O
 as	O
-la	B
+la	O
 dodgers	O
 manager	O
 after	O
@@ -2234,8 +2234,8 @@ getting	O
 trampled	O
 at	O
 a	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 concert	O
 ,	O
 yoiu	O
@@ -2259,7 +2259,7 @@ castle	O
 goes	O
 down	O
 ,	O
-murkowski	B
+murkowski	O
 goes	O
 write-in	O
 .	O
@@ -2352,7 +2352,7 @@ lot	O
 @amandacarolinne	O
 :	O
 "	O
-danger	B
+danger	O
 days	O
 :	O
 the	O
@@ -2360,7 +2360,7 @@ true	O
 lives	O
 of	O
 the	O
-fabulous	I
+fabulous	O
 killjoys	O
 "'	O
 
@@ -2396,7 +2396,7 @@ baka	O
 boyz	O
 live	O
 w/	O
-dj	B
+dj	O
 elements	O
 103.5	O
 &amp;	O
@@ -2455,8 +2455,8 @@ getting	O
 trampled	O
 at	O
 a	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 concert	O
 ,	O
 yoiu	O
@@ -2615,7 +2615,7 @@ a	O
 &quot;	O
 until	O
 &quot;	O
-devil	I
+devil	O
 &quot;	O
 starts	O
 !	O
@@ -2706,7 +2706,7 @@ perhaps	O
 it	O
 's	O
 time	O
-america	B
+america	O
 was	O
 run	O
 like	O
@@ -2751,14 +2751,14 @@ had	O
 of	O
 early	O
 80s	O
-nyc	B
+nyc	O
 was	O
 if	O
 you	O
 went	O
 to	O
 central	O
-park	I
+park	O
 after	O
 dark	O
 you'd	O
@@ -2964,7 +2964,7 @@ xxx	O
 
 why	O
 is	O
-twitter	B
+twitter	O
 dead	O
 ?	O
 oh	O
@@ -3051,7 +3051,7 @@ and	O
 @roundhouseldn	O
 has	O
 a	O
-twitter	B
+twitter	O
 account	O
 .	O
 so	O
@@ -3065,10 +3065,10 @@ you	O
 tomorrow	O
 .	O
 
-greek	B
-festival	I
+greek	O
+festival	O
 at	O
-st	B
+st	O
 johns	O
 before	O
 aspen	B
@@ -3127,7 +3127,7 @@ we	O
 're	O
 featured	O
 on	O
-itunes	B
+itunes	O
 this	O
 week	O
 !	O
@@ -3375,15 +3375,15 @@ yahoo	O
 :	O
 jackie	O
 joins	O
-twitter	B
+twitter	O
 50	O
 years	O
 after	O
-jfk	B
+jfk	O
 campaign	O
 :	O
 had	O
-twitter	B
+twitter	O
 been	O
 an	O
 option	O
@@ -3444,8 +3444,8 @@ getting	O
 trampled	O
 at	O
 a	O
-justin	B
-bieber	I
+justin	O
+bieber	O
 concert	O
 ,	O
 yoiu	O
