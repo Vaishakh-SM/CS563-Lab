@@ -71,7 +71,7 @@ def parser(filename) :
 
 
 # Use viterbi algorithm to calculate best hidden states 
-def bigram_viterbi(transition,pi,emission,testseq) :
+def bigram_viterbi(transition, pi, emission, testseq) :
     if len(testseq) == 0:
         return []
     mu = [{}]
@@ -168,9 +168,9 @@ def unigram_viterbi(pi, emission, testseq):
 
 
 # To split data for K-Fold cv based on iteration
-def train_test_splitter(iteration,sentences) :
-    startid = int((iteration - 1) * (len(sentences) / 5))
-    endid = int(iteration * (len(sentences) / 5))
+def train_test_splitter(iteration,sentences, k=5) :
+    startid = int((iteration - 1) * (len(sentences) / k))
+    endid = int(iteration * (len(sentences) / k))
     train_split, test_split = [], []
     for id, sentence in enumerate(sentences):
         if startid <= id and id < endid:
@@ -187,29 +187,36 @@ def print_metrics(test_acc, precision, recall, f1, classes):
                    tablefmt='orgtbl'))
     print("\n")
 
-if __name__ == "__main__":
 
-    sentences = parser("./NER-Dataset-Train.txt")
-
-    # 5-fold cross validation
-    for iteration in range(1, 6):
+def kfold_crossvalidation(sentences, model, k=5):
+    avg_accuracy =0
+    for iteration in range(1, k+1):
         train_split, test_split = train_test_splitter(iteration,sentences)
         transition, pi, emission = get_parameters(train_split)
         
         prediction_full = []
         actual_full = []
         
-        for sentence in test_split:
-            actual = []
-            words = []
-            for word in sentence:
-                words.append(word[:-1].lower())
-                actual.append(word[-1])
-            #prediction = unigram_viterbi(pi, emission, words)
-            prediction = bigram_viterbi(pi, emission, words)
-            if len(prediction) != 0:
-                actual_full.extend(actual)
-                prediction_full.extend(prediction)
+        with open('./validation_outputs/'+model+'_output' + str(iteration)+'.txt', 'w+') as ofile:
+            for sentence in test_split:
+                actual = []
+                words = []
+                for word in sentence:
+                    words.append(word[:-1].lower())
+                    actual.append(word[-1])
+
+                if model=="unigram":
+                    prediction = unigram_viterbi(pi, emission, words)
+                elif model=="bigram":
+                    prediction = bigram_viterbi(transition, pi, emission, words)
+
+                if len(prediction) != 0:
+                    actual_full.extend(actual)
+                    prediction_full.extend(prediction)
+
+                for word, state in zip(words, prediction):
+                    ofile.write(word + '\t' + state + '\n')
+                ofile.write('\n')
 
         prediction_full[-2] = "B"
         prediction_full[-1] = "I"
@@ -221,17 +228,33 @@ if __name__ == "__main__":
         pre = precision_score(actual_trans,prediction_trans,average=None)
         recall = recall_score(actual_trans,prediction_trans,average=None)
         f1 = f1_score(actual_trans,prediction_trans,average=None)
+        avg_accuracy += acc
         print_metrics(acc,pre,recall,f1,states)
 
+    print(model, "hmm average accuracy = ", avg_accuracy/5)
+
+if __name__ == "__main__":
+
+    sentences = parser("./NER-Dataset-Train.txt")
+
+    # 5-fold cross validation
+    print("Train using unigram HMM model:")
+    kfold_crossvalidation(sentences, "unigram")
+
+    print("Train using bigram HMM model:")
+    kfold_crossvalidation(sentences, "bigram")
+    
     # # running for the test-set
-    # with open('test_output', 'w') as ofile:
-    #     test_sentences = parser('./NER-Dataset--TestSet.txt')
-    #     transition, pi, emission = get_parameters(sentences)
-    #     for sentence in test_sentences:
-    #         words = []
-    #         for word in sentence:
-    #             words.append(word.lower())
-    #         prediction = viterbi(transition, pi, emission, words)
-    #         for word, state in zip(words, prediction):
-    #             ofile.write(word + '\t' + state + '\n')
-    #         ofile.write('\n')
+    with open('test_output.txt', 'w') as ofile:
+        transition, pi, emission = get_parameters(sentences)
+
+        test_sentence = "Justin Bieber is touring with Michael in Ohio"
+        test_words = test_sentence.split()
+        test_words = [word.lower() for word in test_words]
+
+        prediction = bigram_viterbi(transition, pi, emission, test_words)
+        for word, state in zip(test_words, prediction):
+            ofile.write(word + '\t' + state + '\n')
+        
+        print("\n---Test sentence predicted!---")
+        ofile.write('\n')

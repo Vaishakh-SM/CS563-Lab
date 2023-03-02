@@ -1,0 +1,9 @@
+justin	B
+bieber	I
+is	O
+touring	O
+with	O
+michael	B
+in	O
+ohio	B
+
